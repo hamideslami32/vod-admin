@@ -1,21 +1,28 @@
+import { useEffect } from "react";
 import "./sidebar.css";
 import {
   LineStyle,
-  Timeline,
-  TrendingUp,
-  PermIdentity,
-  AttachMoney,
-  BarChart,
-  MailOutline,
-  DynamicFeed,
-  ChatBubbleOutline,
-  WorkOutline,
-  Report,
+  // Timeline,
+  // TrendingUp,
+  // PermIdentity,
+  // AttachMoney,
+  // BarChart,
+  // MailOutline,
+  // DynamicFeed,
+  // ChatBubbleOutline,
+  // WorkOutline,
+  // Report,
   PlayCircleOutline,
 } from "@material-ui/icons";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 export default function Sidebar() {
+  const history = useHistory();
+  let path = history.location.pathname;
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    path = history.location.pathname;
+  }, [history.location.pathname]);
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
@@ -23,12 +30,12 @@ export default function Sidebar() {
           <h3 className="sidebarTitle">Dashboard</h3>
           <ul className="sidebarList">
             <Link to="/" className="link">
-              <li className="sidebarListItem active">
+              <li className={`sidebarListItem ${path === "/" ? "active" : ""}`}>
                 <LineStyle className="sidebarIcon" />
                 Home
               </li>
             </Link>
-            <li className="sidebarListItem">
+            {/* <li className="sidebarListItem">
               <Timeline className="sidebarIcon" />
               Analytics
             </li>
@@ -46,24 +53,28 @@ export default function Sidebar() {
                 <PermIdentity className="sidebarIcon" />
                 Users
               </li>
-            </Link>
+            </Link> */}
             <Link to="/movies" className="link">
-              <li className="sidebarListItem">
+              <li
+                className={`sidebarListItem ${
+                  path === "/movies" ? "active" : ""
+                }`}
+              >
                 <PlayCircleOutline className="sidebarIcon" />
                 Movies
               </li>
             </Link>
-            <li className="sidebarListItem">
+            {/* <li className="sidebarListItem">
               <AttachMoney className="sidebarIcon" />
               Transactions
             </li>
             <li className="sidebarListItem">
               <BarChart className="sidebarIcon" />
               Reports
-            </li>
+            </li> */}
           </ul>
         </div>
-        <div className="sidebarMenu">
+        {/* <div className="sidebarMenu">
           <h3 className="sidebarTitle">Notifications</h3>
           <ul className="sidebarList">
             <li className="sidebarListItem">
@@ -79,8 +90,8 @@ export default function Sidebar() {
               Messages
             </li>
           </ul>
-        </div>
-        <div className="sidebarMenu">
+        </div> */}
+        {/* <div className="sidebarMenu">
           <h3 className="sidebarTitle">Staff</h3>
           <ul className="sidebarList">
             <li className="sidebarListItem">
@@ -96,7 +107,7 @@ export default function Sidebar() {
               Reports
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
     </div>
   );
